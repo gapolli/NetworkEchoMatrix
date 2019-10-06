@@ -5,11 +5,23 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 
+/**
+ * Inserir descrição aqui
+ * @author
+ * @version
+ * @since
+ */
 class ClientHandler extends Thread {
 	private final MultitaskServer father;
 	private final Socket clientSocket;
 	private final int threadId;
 
+	/**
+	 * Construtor da classe
+	 * @param father ...
+	 * @param myClientSocket ...
+	 * @param myThreadId ...
+	 */
 	ClientHandler(MultitaskServer father, Socket myClientSocket, int myThreadId) {
 		super();
 		this.father = father;
@@ -17,6 +29,9 @@ class ClientHandler extends Thread {
 		this.threadId = myThreadId;
 	}
 
+	/**
+	 * Inserir descrição aqui
+	 */
 	@Override
 	public void run() {
 		boolean isRunning = true;
@@ -65,6 +80,10 @@ class ClientHandler extends Thread {
 		}
 	}
 
+	/**
+	 * Inserir descrição aqui
+	 * @param plainText ...
+	 */
 	private static String reverseString(String plainText) {
 		return ((new StringBuffer(plainText)).reverse().toString());
 	}

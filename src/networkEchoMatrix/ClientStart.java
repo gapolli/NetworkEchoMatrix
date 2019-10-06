@@ -6,6 +6,12 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.util.Random;
 
+/**
+ * Inserir descrição aqui
+ * @author
+ * @version
+ * @since
+ */
 public class ClientStart {
 	private static final String module = "Client";
 	private static final Random randGen = new Random();
@@ -50,6 +56,9 @@ public class ClientStart {
 		System.out.println(module + " stopped.");
 	}
 
+	/**
+	 * Inserir descrição aqui
+	 */
 	private static byte[] msgFactory() {
 		byte[] buffer = null;
 
@@ -62,6 +71,9 @@ public class ClientStart {
 		return (buffer);
 	}
 
+	/**
+	 * Inserir descrição aqui
+	 */
 	private static byte[] fillArray() {
 		byte[] buffer;
 		buffer = new byte[Info.maxPackageSise];

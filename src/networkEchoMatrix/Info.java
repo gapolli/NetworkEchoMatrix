@@ -1,5 +1,11 @@
 package networkEchoMatrix;
 
+/**
+ * Inserir descrição aqui
+ * @author
+ * @version
+ * @since
+ */
 public class Info {
 	public static final String sysName = "Network Echo III";
 	public static final String sysVersion = "1.00";

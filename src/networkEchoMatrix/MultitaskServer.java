@@ -5,11 +5,23 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ * Inserir descrição aqui
+ * @author
+ * @version
+ * @since
+ */
 class MultitaskServer {
 	private final String module;
 	private boolean isRunning;
 	private int threadsCount;
 
+	/**
+	 * Construtor da classe
+	 * @param father ...
+	 * @param myClientSocket ...
+	 * @param myThreadId ...
+	 */
 	MultitaskServer(String module) {
 		super();
 		this.module = module;
@@ -17,6 +29,9 @@ class MultitaskServer {
 		this.threadsCount = 0;
 	}
 
+	/**
+	 * Inserir descrição aqui
+	 */
 	void startServer() {
 		this.isRunning = true;
 
@@ -41,6 +56,10 @@ class MultitaskServer {
 		System.out.println();
 	}
 
+	/**
+	 * Inserir descrição aqui
+	 * @param threadId ...
+	 */
 	void threadClosed(int threadId) {
 		this.threadsCount--;
 
