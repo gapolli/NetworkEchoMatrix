@@ -8,6 +8,12 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.util.Random;
 
+/**
+ * This class start the client end to send an matrix and receive it transposed
+ * @author
+ * @version
+ * @since
+ */
 public class ClientStart
    {
    private static final String module    = "Client";
@@ -16,6 +22,9 @@ public class ClientStart
    
    private static Matrix matrix;
    
+   /**
+    * The main program
+    */
    public static void main(String[] args) throws ClassNotFoundException
       {
       System.out.println(Info.getUniformTitle());

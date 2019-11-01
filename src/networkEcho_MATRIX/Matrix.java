@@ -3,6 +3,12 @@ package networkEcho_MATRIX;
 import java.io.Serializable;
 import java.util.Random;
 
+/**
+ * The Class Matrix implements all the necessary methods to create and transpose a matrix
+ * @author
+ * @version
+ * @since
+ */
 public class Matrix implements Serializable{
 	
 	/**
@@ -16,6 +22,9 @@ public class Matrix implements Serializable{
 	
 	boolean isTransposed = false;
 	
+	/**
+	 * Class Constructor
+	 */
 	public Matrix() {
 		Random random = new Random();
 		
@@ -32,7 +41,10 @@ public class Matrix implements Serializable{
 			}
 		}
 	}
-		
+	
+	/**
+	 * Inserir descrição aqui
+	 */
 	public void transposeMatrix() {
 		int transp_matrix[][] = new int[rowcount][linecount];
 		
@@ -50,7 +62,10 @@ public class Matrix implements Serializable{
 		
 		isTransposed = !isTransposed;
 	}
-		
+	
+	/**
+	 * Inserir descrição aqui
+	 */
 	void printMatrix() {
 		if (isTransposed)
 			System.out.println("The given Matrix is Transposed: ");
@@ -64,15 +79,4 @@ public class Matrix implements Serializable{
 			System.out.println();
 		}
 	}
-	
-	
-	public static void main(String[] args) {
-		/*Matrix m = new Matrix();
-		m.printMatrix();
-		m.transposeMatrix();
-		m.printMatrix();
-		m.transposeMatrix();
-		m.printMatrix();*/
-	}
-
 }

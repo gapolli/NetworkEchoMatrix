@@ -8,6 +8,12 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.util.Scanner;
 
+/**
+ * Inserir descrição aqui
+ * @author
+ * @version
+ * @since
+ */
 class ClientHandler extends Thread
    {
    private final MultitaskServer father;
@@ -16,6 +22,12 @@ class ClientHandler extends Thread
    
    private static Matrix matrix;
    
+	/**
+	 * Construtor da classe
+	 * @param father ...
+	 * @param myClientSocket ...
+	 * @param myThreadId ...
+	 */
    ClientHandler(MultitaskServer father, Socket myClientSocket, int myThreadId)
       {
       super();
@@ -24,6 +36,9 @@ class ClientHandler extends Thread
       this.threadId = myThreadId;
       }
 
+	/**
+	 * Inserir descrição aqui
+	 */
    @Override
    public void run()
       {
@@ -51,7 +66,6 @@ class ClientHandler extends Thread
             	matrix = (Matrix) objIStream.readObject();
 			} catch (ClassNotFoundException e) {
 				//e.printStackTrace();
-				
 				isRunning = false;
 			}
              
@@ -63,8 +77,12 @@ class ClientHandler extends Thread
                matrix.printMatrix();
                              
                matrix.transposeMatrix();
-
-               objOStream.writeObject(matrix);
+               
+               try {
+            	   objOStream.writeObject(matrix);
+               }catch(IOException exceptionLaunched) {
+            	   
+               }
 
                System.out.println(localTag + " writing ... " + (++msgSent) + ": ");
                matrix.printMatrix();
