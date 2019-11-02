@@ -12,9 +12,13 @@ import java.util.Random;
  * This class start the client end to send a matrix and receive it transposed
  * from the server.
  * 
- * @author
- * @version 1.0
- * @since version 1.0
+ * @author André Franceschi de Angelis
+ * @author Mateus Pim Santos
+ * @author Gustavo Adrien Polli
+ * @author Victor Gomes Sampaio
+ * @author Max Lúcio Martins de Assis
+ * @version 1.1
+ * @since 1.0
  */
 public class ClientStart {
 	private static final String module = "Client";

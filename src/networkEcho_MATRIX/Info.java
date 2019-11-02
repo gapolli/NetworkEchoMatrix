@@ -4,7 +4,7 @@ package networkEcho_MATRIX;
  * This class can be accessed through the program. Used to store global
  * attributes and methods.
  * 
- * @author
+ * @author André Franceschi de Angelis
  * @version 1.0
  * @since version 1.0
  */

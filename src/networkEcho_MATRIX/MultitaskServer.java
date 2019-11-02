@@ -8,9 +8,9 @@ import java.net.Socket;
 /**
  * This class opens a server that listen to client requisitions.
  * 
- * @author
+ * @author André Franceschi de Angelis
  * @version 1.0
- * @since version 1.0
+ * @since 1.0
  */
 class MultitaskServer {
 	private final String module;

@@ -12,9 +12,13 @@ import java.net.Socket;
  * This class intent to be the threads generator for the ClientStart
  * requisitions.
  * 
- * @author
- * @version 1.0
- * @since version 1.0
+ * @author André Franceschi de Angelis
+ * @author Mateus Pim Santos
+ * @author Gustavo Adrien Polli
+ * @author Victor Gomes Sampaio
+ * @author Max Lúcio Martins de Assis
+ * @version 1.1
+ * @since 1.0
  */
 class ClientHandler extends Thread {
 	private final MultitaskServer father;

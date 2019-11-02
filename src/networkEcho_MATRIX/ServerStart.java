@@ -3,8 +3,12 @@ package networkEcho_MATRIX;
 /**
  * This class starts the multitask server.
  * 
- * @author
- * @version 1.0
+ * @author André Franceschi de Angelis
+ * @author Mateus Pim Santos
+ * @author Gustavo Adrien Polli
+ * @author Victor Gomes Sampaio
+ * @author Max Lúcio Martins de Assis
+ * @version 1.1
  * @since version 1.0
  */
 public class ServerStart {
