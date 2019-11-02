@@ -6,10 +6,11 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * Inserir descrição aqui
+ * This class opens a server that listen to client requisitions.
+ * 
  * @author
- * @version
- * @since
+ * @version 1.0
+ * @since version 1.0
  */
 class MultitaskServer {
 	private final String module;
@@ -17,10 +18,9 @@ class MultitaskServer {
 	private int threadsCount;
 
 	/**
-	 * Construtor da classe
-	 * @param father ...
-	 * @param myClientSocket ...
-	 * @param myThreadId ...
+	 * MultitaskServer class constructor.
+	 * 
+	 * @param module the name of the multitask server.
 	 */
 	MultitaskServer(String module) {
 		super();
@@ -30,7 +30,7 @@ class MultitaskServer {
 	}
 
 	/**
-	 * Inserir descrição aqui
+	 * Start a server instance and prepare it to receive requisitions.
 	 */
 	void startServer() {
 		this.isRunning = true;
@@ -57,8 +57,10 @@ class MultitaskServer {
 	}
 
 	/**
-	 * Inserir descrição aqui
-	 * @param threadId ...
+	 * Closes a instanced thread using as argument his id. If the thread counter
+	 * reach 0, the server is closed as well.
+	 * 
+	 * @param threadId the instanced thread id.
 	 */
 	void threadClosed(int threadId) {
 		this.threadsCount--;

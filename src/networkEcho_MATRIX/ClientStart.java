@@ -9,77 +9,73 @@ import java.net.Socket;
 import java.util.Random;
 
 /**
- * This class start the client end to send an matrix and receive it transposed
+ * This class start the client end to send a matrix and receive it transposed
+ * from the server.
+ * 
  * @author
- * @version
- * @since
+ * @version 1.0
+ * @since version 1.0
  */
-public class ClientStart
-   {
-   private static final String module    = "Client";
-   private static final Random randGen   = new Random();
-   private static boolean      isRunning = true;
-   
-   private static Matrix matrix;
-   
-   /**
-    * The main program
-    */
-   public static void main(String[] args) throws ClassNotFoundException
-      {
-      System.out.println(Info.getUniformTitle());
-      System.out.println(module + " running.");
-      System.out.println();
+public class ClientStart {
+	private static final String module = "Client";
+	@SuppressWarnings("unused")
+	private static final Random randGen = new Random();
+	private static boolean isRunning = true;
 
-      try (Socket clientSocket = new Socket("localhost", Info.listeningPort))
-         {
-         int msgSent = 0;
-         int msgRcvd = 0;
-         System.out.println("Local TCP port " + clientSocket.getLocalPort());
-         System.out.println("Sending bytes to TCP port " + clientSocket.getPort());
-         System.out.println();
-         
-         OutputStream outputStream = clientSocket.getOutputStream();
-         ObjectOutputStream objOStream = new ObjectOutputStream(outputStream);
-         
-         InputStream inputStream = clientSocket.getInputStream();
-         ObjectInputStream objIStream = new ObjectInputStream(inputStream);
-                  
-         while (isRunning)
-            {
-        	 
-        	matrix = new Matrix();
-            System.out.println(module + " sending " + (++msgSent) + ": ");
-            matrix.printMatrix();
-            
-            objOStream.writeObject((Object) matrix);
-            
-            try {
-            	matrix = (Matrix) objIStream.readObject();
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
+	private static Matrix matrix;
+
+	/**
+	 * The main client program.
+	 */
+	public static void main(String[] args) throws ClassNotFoundException {
+		System.out.println(Info.getUniformTitle());
+		System.out.println(module + " running.");
+		System.out.println();
+
+		try (Socket clientSocket = new Socket("localhost", Info.listeningPort)) {
+			int msgSent = 0;
+			int msgRcvd = 0;
+			System.out.println("Local TCP port " + clientSocket.getLocalPort());
+			System.out.println("Sending bytes to TCP port " + clientSocket.getPort());
+			System.out.println();
+
+			OutputStream outputStream = clientSocket.getOutputStream();
+			ObjectOutputStream objOStream = new ObjectOutputStream(outputStream);
+
+			InputStream inputStream = clientSocket.getInputStream();
+			ObjectInputStream objIStream = new ObjectInputStream(inputStream);
+
+			while (isRunning) {
+
+				matrix = new Matrix();
+				System.out.println(module + " sending " + (++msgSent) + ": ");
+				matrix.printMatrix();
+
+				objOStream.writeObject((Object) matrix);
+
+				try {
+					matrix = (Matrix) objIStream.readObject();
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+
+				System.out.println(module + " received " + (++msgRcvd) + ": ");
+				matrix.printMatrix();
+				System.out.println();
+
+				Thread.sleep(Info.loopDelay);
+
+				if (msgSent == 1)
+					isRunning = false;
 			}
+			clientSocket.close();
+		} catch (IOException | InterruptedException exception) {
+			System.out.println("Exception launched: " + exception.getMessage());
+			System.exit(1);
+		}
 
-            System.out.println(module + " received " + (++msgRcvd) + ": ");
-            matrix.printMatrix();
-            System.out.println();
-
-            Thread.sleep(Info.loopDelay);
-            
-            if (msgSent == 1)
-            	isRunning = false;
-            }
-         clientSocket.close();
-         }
-      catch (IOException | InterruptedException exception)
-         {
-         System.out.println("Exception launched: " + exception.getMessage());
-         System.exit(1);
-         }
-
-      System.out.println();
-      System.out.println(Info.getUniformTitle());
-      System.out.println(module + " stopped.");
-      }
-   }
-
+		System.out.println();
+		System.out.println(Info.getUniformTitle());
+		System.out.println(module + " stopped.");
+	}
+}
