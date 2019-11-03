@@ -16,6 +16,7 @@ public class ServerStart {
 
 	/**
 	 * The main server program.
+	 * @param args permit the user to pass arguments in the execution of this program
 	 */
 	public static void main(String[] args) {
 		System.out.println(Info.getUniformTitle());

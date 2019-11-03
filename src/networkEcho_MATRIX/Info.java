@@ -17,7 +17,18 @@ public class Info {
 	public static final String shutDownCmd = "go down";
 	public static final int loopDelay = 2500;
 
+	private static final String decoration = "#";
+	
 	public static final String getUniformTitle() {
 		return (Info.sysName + " - " + Info.sysVersion);
 	}
+	
+	public static final void getDecoration(int spaces) {
+				
+		for (int l = 0; l < spaces * 7; l++) {
+			System.out.print(decoration);
+		}
+		System.out.println();
+	}
+
 }

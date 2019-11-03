@@ -6,11 +6,11 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * This class opens a server that listen to client requisitions.
+ * This class opens a server that listens to client requisitions.
  * 
  * @author André Franceschi de Angelis
  * @version 1.0
- * @since 1.0
+ * @since version 1.0
  */
 class MultitaskServer {
 	private final String module;

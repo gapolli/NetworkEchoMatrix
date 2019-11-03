@@ -7,7 +7,10 @@ import java.util.Random;
  * The class Matrix implements all the necessary methods to create and transpose
  * a matrix.
  * 
- * @author
+ * @author Mateus Pim Santos
+ * @author Gustavo Adrien Polli
+ * @author Victor Gomes Sampaio
+ * @author Max Lúcio Martins de Assis
  * @version 1.0
  * @since version 1.0
  */
@@ -22,10 +25,12 @@ public class Matrix implements Serializable {
 	private int linecount;
 	private int rowcount;
 
-	boolean isTransposed = false;
+	private boolean isTransposed = false;
 
 	/**
 	 * Matrix class Constructor.
+	 * Generate random numbers for the linecount and rowcount
+	 * and fill the matrix with random numbers from (0,255)
 	 */
 	public Matrix() {
 		Random random = new Random();
@@ -43,7 +48,21 @@ public class Matrix implements Serializable {
 			}
 		}
 	}
+	
+	/**
+	 * Matrix class overrided Constructor.
+	 * Creates a matrix from its given parameters.
+	 * @param matrix[][] the matrix passed to the Class
+	 */
+	public Matrix(int matrix[][]) {
 
+		this.linecount = matrix.length;
+		this.rowcount = matrix[0].length;
+
+		this.matrix = matrix;
+	}
+	
+	//public Matrix(int linecount, int rowcount , int matrix[][]) {
 	/**
 	 * This method do a transposition of the elements of the received matrix.
 	 */
@@ -69,16 +88,21 @@ public class Matrix implements Serializable {
 	 * Prints information of the transposition and the handled matrix.
 	 */
 	void printMatrix() {
-		if (isTransposed)
-			System.out.println("The given Matrix is Transposed: ");
-		else
-			System.out.println("The given Matrix is not Transposed: ");
-
+		
+		Info.getDecoration(rowcount);
+		
+		System.out.printf("The following Matrix [%d][%d] %s Transposed: \n", linecount , rowcount , (isTransposed)? "is": "is not");
+				
+		//Info.getDecoration(rowcount);
+		
 		for (int l = 0; l < linecount; l++) {
 			for (int c = 0; c < rowcount; c++) {
 				System.out.print(matrix[l][c] + "\t");
 			}
 			System.out.println();
 		}
+		
+		Info.getDecoration(rowcount);
 	}
+	
 }

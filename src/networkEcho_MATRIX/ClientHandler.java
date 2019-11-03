@@ -1,5 +1,6 @@
 package networkEcho_MATRIX;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
@@ -18,14 +19,14 @@ import java.net.Socket;
  * @author Victor Gomes Sampaio
  * @author Max Lúcio Martins de Assis
  * @version 1.1
- * @since 1.0
+ * @since version 1.0
  */
 class ClientHandler extends Thread {
 	private final MultitaskServer father;
 	private final Socket clientSocket;
 	private final int threadId;
 
-	private static Matrix matrix;
+	private static Matrix matrix = null;
 
 	/**
 	 * ClientHandler class constructor.
@@ -59,19 +60,17 @@ class ClientHandler extends Thread {
 
 			int msgSent = 0;
 			int msgRcvd = 0;
-
-			System.out.println("Try");
+			
 			while (isRunning) {
 				String localTag = "Client Handler #" + threadId;
-
+				
 				try {
 					matrix = (Matrix) objIStream.readObject();
-				} catch (ClassNotFoundException e) {
-					// e.printStackTrace();
+				}catch(EOFException ex ) {
 					isRunning = false;
+					break;
 				}
-
-				System.out.println("" + matrix.toString());
+				
 				if (matrix != null) {
 
 					System.out.println(localTag + " read .... " + (++msgRcvd) + ": ");
@@ -79,17 +78,13 @@ class ClientHandler extends Thread {
 
 					matrix.transposeMatrix();
 
-					try {
-						objOStream.writeObject(matrix);
-					} catch (IOException exceptionLaunched) {
-
-					}
+					objOStream.writeObject(matrix);
+					objOStream.flush();
 
 					System.out.println(localTag + " writing ... " + (++msgSent) + ": ");
 					matrix.printMatrix();
 					System.out.println();
-
-					// isRunning = false;
+					
 				}
 			}
 
@@ -102,6 +97,8 @@ class ClientHandler extends Thread {
 			father.threadClosed(this.threadId);
 		} catch (IOException exceptionLaunched) {
 			exceptionLaunched.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 		}
 	}
 }
